@@ -1,0 +1,9 @@
+C:\dev\ndphsoft\SharedLibrary\bin\Debug\SharedLibrary.dll
+C:\dev\ndphsoft\SharedLibrary\bin\Debug\SharedLibrary.pdb
+C:\dev\ndphsoft\SharedLibrary\obj\Debug\SharedLibrary.dll
+C:\dev\ndphsoft\SharedLibrary\obj\Debug\SharedLibrary.pdb
+C:\dev\ndphsoft\SharedLibrary\obj\Debug\SharedLibrary.csprojResolveAssemblyReference.cache
+C:\dev\SharedLibrary\bin\Debug\SharedLibrary.dll
+C:\dev\SharedLibrary\bin\Debug\SharedLibrary.pdb
+C:\dev\SharedLibrary\obj\Debug\SharedLibrary.dll
+C:\dev\SharedLibrary\obj\Debug\SharedLibrary.pdb
