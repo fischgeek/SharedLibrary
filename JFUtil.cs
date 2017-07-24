@@ -19,6 +19,11 @@ namespace SharedLibrary
             return r.Next(max);
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="max"></param>
+		/// <returns></returns>
         public static int GetRandomNeg(int max = 10)
         {
             Random r = new Random();

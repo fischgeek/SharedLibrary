@@ -1,5 +1,0 @@
-C:\dev\ndphsoft\SharedLibrary\bin\Release\SharedLibrary.dll
-C:\dev\ndphsoft\SharedLibrary\bin\Release\SharedLibrary.pdb
-C:\dev\ndphsoft\SharedLibrary\obj\Release\SharedLibrary.dll
-C:\dev\ndphsoft\SharedLibrary\obj\Release\SharedLibrary.pdb
-C:\dev\ndphsoft\SharedLibrary\obj\Release\SharedLibrary.csprojResolveAssemblyReference.cache
