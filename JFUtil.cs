@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +21,11 @@ namespace SharedLibrary
             return r.Next(max);
         }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="max"></param>
-		/// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static int GetRandomNeg(int max = 10)
         {
             Random r = new Random();
@@ -43,24 +45,77 @@ namespace SharedLibrary
             return 0;
         }
 
-		public class JSONResponse
-		{
-			public bool success = true;
-			public string Status { get; set; }
-			public string Message { get; set; }
-			public object Data { get; set; }
-		}
+        public class JSONResponse
+        {
+            public bool success = true;
+            public string Status { get; set; }
+            public string Message { get; set; }
+            public object Data { get; set; }
+        }
 
-		public enum JSONResponseStatus
-		{
-			Success,
-			Error,
-			None
-		}
+        public enum JSONResponseStatus
+        {
+            Success,
+            Error,
+            None
+        }
 
-		public static string getJSONResponseText(JSONResponseStatus enumStatus)
-		{
-			return enumStatus.ToString();
-		}
-	}
+        public static string getJSONResponseText(JSONResponseStatus enumStatus)
+        {
+            return enumStatus.ToString();
+        }
+
+        public static string ToTitleCase(this string s) => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(s.ToLower());
+
+        public static string ToFilePrefixString(this DateTime dateTime)
+        {
+            var month = dateTime.Month.ToString().PadLeft(2, '0');
+            var day = dateTime.Day.ToString().PadLeft(2, '0');
+            return $"{dateTime.Year}{month}{day}_{dateTime.Hour}{dateTime.Minute}";
+        }
+
+        public static FileIOResult EnsureDirectory(string directoryPath)
+        {
+            var r = new FileIOResult();
+            if (!Directory.Exists(directoryPath)) {
+                try {
+                    Directory.CreateDirectory(directoryPath);
+                } catch (Exception ex) {
+                    r.ErrorMessage = ex.Message;
+                }
+            }
+            return r;
+        }
+
+        public static FileIOResult EnsureFile(string file)
+        {
+            var r = new FileIOResult();
+            var fi = new FileInfo(file);
+            var dr = EnsureDirectory(fi.DirectoryName);
+            if (!dr.Success) {
+                r.ErrorMessage = dr.ErrorMessage;
+                return r;
+            }
+            if (!File.Exists(file)) {
+                try {
+                    File.Create(file);
+                } catch (Exception ex) {
+                    r.ErrorMessage = ex.Message;
+                }
+            }
+            return r;
+        }
+
+        public class FileIOResult
+        {
+            public bool Success
+            {
+                get {
+                    return this.ErrorMessage.Length == 0;
+                }
+                set { }
+            }
+            public string ErrorMessage { get; set; } = "";
+        }
+    }
 }

@@ -122,5 +122,16 @@ namespace SharedLibrary
 			int diff = d.DayOfWeek - dow;
 			return d.AddDays(-diff);
 		}
-	}
+
+        public static string FormatPhoneStandard(this string phone)
+        {
+            phone = Regex.Replace(phone, @"[\.|-|\(|\(|\)|\s+]", "").Trim();
+            if (phone.Length == 10) {
+                phone = $"({phone.Substring(0, 3)}) {phone.Substring(3, 3)}-{phone.Substring(6, 4)}";
+            } else if (phone.Length == 7) {
+                phone = $"{phone.Substring(0, 3)}-{phone.Substring(3, 4)}";
+            }
+            return phone;
+        }
+    }
 }
