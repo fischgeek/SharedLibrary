@@ -17,6 +17,11 @@ namespace SharedLibrary
         /// </summary>
         /// <param name="text"></param>
         public static void cl(string text = "") => Console.WriteLine(text);
+        public static void clt(string text = "")
+        {
+            var stamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            cl($"[{stamp}] {text}");
+        }
         /// <summary>
         /// Console.Write(text);
         /// </summary>

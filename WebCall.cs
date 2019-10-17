@@ -25,10 +25,13 @@ namespace SharedLibrary
             var response = client.Get(request);
             return response.Content;
         }
-        public static WebResult GetRequestWithErrorHandling(string url)
+        public static WebResult GetRequestWithErrorHandling(string url, string basicAuth = "")
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
+            if (!basicAuth.JFIsNull()) {
+                request.AddHeader("Authorization", $"Basic {basicAuth}");
+            }
             var response = client.Get(request);
             return new WebResult() {
                 IsSuccessful = response.IsSuccessful
@@ -38,12 +41,15 @@ namespace SharedLibrary
             };
         }
 
-        public static string PutRequest(string url, object objParams = null)
+        public static string PutRequest(string url, object objParams = null, string basicAuth = "")
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.PUT);
             if (objParams != null) {
                 request.AddJsonBody(objParams);
+            }
+            if (!basicAuth.JFIsNull()) {
+                request.AddHeader("Authorization", $"Basic {basicAuth}");
             }
             var response = client.Put(request);
             return response.Content;
@@ -58,10 +64,13 @@ namespace SharedLibrary
             return response.Content;
         }
 
-        public static WebResult PostRequestWithErrorHandling(string url, object postParams)
+        public static WebResult PostRequestWithErrorHandling(string url, object postParams, string basicAuth = "")
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.POST);
+            if (!basicAuth.JFIsNull()) {
+                request.AddHeader("Authorization", $"Basic {basicAuth}");
+            }
             request.AddJsonBody(postParams);
             var response = client.Post(request);
             return new WebResult() {

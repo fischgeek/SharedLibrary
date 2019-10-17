@@ -117,5 +117,12 @@ namespace SharedLibrary
             }
             public string ErrorMessage { get; set; } = "";
         }
+
+        public static int SecondsSinceEpoch()
+        {
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+            return secondsSinceEpoch;
+        }
     }
 }
