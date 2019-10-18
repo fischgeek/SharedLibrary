@@ -124,5 +124,10 @@ namespace SharedLibrary
             int secondsSinceEpoch = (int)t.TotalSeconds;
             return secondsSinceEpoch;
         }
+
+        private static bool Working()
+        {
+            return true;
+        }
     }
 }
