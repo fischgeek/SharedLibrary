@@ -125,9 +125,16 @@ namespace SharedLibrary
             return secondsSinceEpoch;
         }
 
-        private static bool Working()
+        public static string Base64Encode(string text)
         {
-            return true;
+            var bytes = Encoding.UTF8.GetBytes(text);
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static string Base64Decode(string base64Encoded)
+        {
+            var bytes = Convert.FromBase64String(base64Encoded);
+            return Encoding.UTF8.GetString(bytes);
         }
     }
 }
